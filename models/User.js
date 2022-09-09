@@ -19,8 +19,10 @@ const UserSchema = new mongoose.Schema(
         },
         avatar: { type: String },
         bio: { type: String },
-        role: String,
+        isAdmin: {type: Boolean, default: false, },
         tokens: [],
         // wishlist: [{ type: ObjectId, ref: 'Route' }]
     }, { timestamps: true });
+
+    module.exports = mongoose.model("User", UserSchema)
 
