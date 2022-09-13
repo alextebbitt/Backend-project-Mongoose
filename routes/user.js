@@ -8,6 +8,7 @@ const {
 
 const router = require("express").Router();
 
+//UPDATE
 router.put("/:id", verifyTokenAndAuthorize, async (req, res) => {
     if (req.body.password) {
         req.body.password = CryptoJS.AES.encrypt(
@@ -21,7 +22,7 @@ router.put("/:id", verifyTokenAndAuthorize, async (req, res) => {
         },
             { new: true }
         );
-        res.status(500).json(updatedUser);
+        res.status(200).json(updatedUser);
     } catch (err) {
         res.status(500).json(err);
     }

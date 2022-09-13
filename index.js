@@ -6,16 +6,17 @@ const mongoose = require("mongoose")
 const { dbConnection } = require("./config/config")
 const userRoute = require("./routes/user")
 const authRoute = require("./routes/auth")
+const productRoute = require("./routes/product")
 
 
 
 
 app.use(express.json())
 dbConnection()
-console.log("hello")
 
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
+app.use("/api/products", productRoute);
 
 
 app.listen(PORT, console.log(`Sever started on port ${PORT}`));
