@@ -1,5 +1,5 @@
 const { PASS_SEC } = require("../config/keys");
-const Product = require("../models/Product");
+const Cart = require("../models/Cart");
 const {
     verifyToken,
     verifyTokenAndAuthorize,
