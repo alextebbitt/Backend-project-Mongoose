@@ -13,7 +13,7 @@ router.post("/", verifyToken, async (req, res) => {
 
     try {
         const savedOrder = await newOrder.save()
-        res.status(200).json(savedCart)
+        res.status(200).json(savedOrder)
 
     } catch (err) {
         res.status(500).json(err)
@@ -79,19 +79,21 @@ router.get("/income", verifyTokenAndAdmin, async (req, res) => {
             { $match: { createdAt: { $gte: previousMonth } } },
             {
                 $project: {
-                    month: { $month: "createdAt" },
-                    sales: "amount",
+                    month: { $month: "$createdAt" },
+                    sales: "$amount",
                 },
-                
-                $group: {
-                    _id: "$month",
-                    total: { $sum: "sales" }
+            },
+                {
+                    $group: {
+                        _id: "$month",
+                        total: { $sum: "$sales" }
+                    },
                 }
-            }
-
-        ])
+        ]);
         res.status(200).json(income)
     } catch (err) {
         res.status(500).json(err)
     }
 })
+
+module.exports = router

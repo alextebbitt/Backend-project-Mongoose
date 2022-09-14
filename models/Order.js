@@ -6,7 +6,7 @@ const OrderSchema = new mongoose.Schema(
         products: [
             {
                 productId: {
-                    type: string
+                    type: String
                 },
                 quantity: {
                     type: Number,
@@ -20,4 +20,4 @@ const OrderSchema = new mongoose.Schema(
 
     }, { timestamps: true });
 
-module.exports = mongoose.model("Product", OrderSchema)
+module.exports = mongoose.model("Order", OrderSchema)
